@@ -28,7 +28,7 @@ console.log(process.env.PG_DATABASE);
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    // connectionString: "postgresql://lukas:Arktureus17@localhost:5432/top_users",
+    // connectionString: "postgresql://username:password@localhost:5432/top_users",
     host: process.env.PG_HOST,
     port: process.env.PG_PORT,
     user: process.env.PG_USER,

@@ -6,7 +6,7 @@ module.exports = new Pool({
   host: "localhost", // or whereever the db is hosted
   user: "lukas",
   database: "top_users",
-  password: "Arktureus17",
+  password: "password",
   port: 5432,
 });
 

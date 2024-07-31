@@ -1,6 +1,7 @@
 const express = require("express");
+const createError = require("http-errors");
 const path = require("path");
-
+const cors = require("cors");
 const logger = require("morgan");
 
 // import routes
@@ -9,13 +10,24 @@ const router = require("./routes/routes");
 const app = express();
 const port = 3000;
 
+// Middleware setip
 app.use(logger("dev"));
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(express.urlencoded({ extended: false })); //set to true for JSON
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5000",
+    process.env.FRONTEND_URL,
+  ],
+  optionsSuccessStatus: 200,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
+app.use(cors(corsOptions));
 // routes
 app.use("/", router);
 
